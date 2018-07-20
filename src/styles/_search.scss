@@ -33,14 +33,18 @@
   top: 50%;
   left: 50%;
   z-index: 999999999999999999;
-  transform: translate(-50%, -50%);
-  width: 50vw;
-  height: 50vh;
+  width: 0;
+  height: 0;
+  overflow: visible;
+}
 
-  & > .osjs-notification {
-    display: flex;
-    flex-direction: column;
-  }
+.osjs-search-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 50vw;
+  max-height: 80vh;
+  transform: translate(-50%, -50%);
 }
 
 .osjs-search-input {

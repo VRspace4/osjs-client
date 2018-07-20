@@ -76,7 +76,7 @@ export default class Search {
     ]));
 
     const view = (state, actions) => h('div', {
-      class: 'osjs-notification',
+      class: 'osjs-search-container osjs-notification',
       style: {
         display: state.visible ? undefined : 'none'
       }
