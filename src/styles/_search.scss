@@ -1,4 +1,4 @@
-/*!
+/*
  * OS.js - JavaScript Cloud/Web Desktop Platform
  *
  * Copyright (c) 2011-2018, Anders Evenrud <andersevenrud@gmail.com>
@@ -28,9 +28,57 @@
  * @licence Simplified BSD License
  */
 
-@import "./src/styles/variables";
-@import "./src/styles/core";
-@import "./src/styles/window";
-@import "./src/styles/notifications";
-@import "./src/styles/login";
-@import "./src/styles/search";
+.osjs-search {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 999999999999999999;
+  transform: translate(-50%, -50%);
+  width: 50vw;
+  height: 50vh;
+
+  & > .osjs-notification {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.osjs-search-input {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+
+  // TODO: Move to theme
+  border: 0 none;
+  background-color: #fff;
+  padding: $base-margin;
+}
+
+.osjs-search-message {
+  padding: $base-margin;
+}
+
+.osjs-search-results {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.osjs-search-result {
+  padding: 0;
+  margin: $base-margin;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+
+  &:hover,
+  &.osjs__active {
+    // TODO: Move to theme
+    background-color: #fff;
+    color: #000;
+  }
+
+  img {
+    margin-right: $base-margin;
+  }
+}
