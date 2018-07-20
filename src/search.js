@@ -66,6 +66,11 @@ export default class Search {
 
     const resultView = ({results, index}, actions) => results.map((r, i) => h('li', {
       onclick: () => actions.open(i),
+      onupdate: el => {
+        if (i === index) {
+          el.scrollIntoView();
+        }
+      },
       class: [
         'osjs-search-result',
         index === i ? 'osjs__active' : ''
