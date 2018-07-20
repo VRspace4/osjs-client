@@ -55,9 +55,20 @@ export default class Search {
   }
 
   search(pattern) {
-    const root = 'osjs:/';
+    const vfs = this.core.make('osjs/vfs');
+    const promises = this.core.make('osjs/fs')
+      .mountpoints()
+      .map(mount => `${mount.name}:/`)
+      .map(path => {
+        return vfs.search({path}, pattern)
+          .catch(error => {
+            console.warn(error);
+            return [];
+          });
+      });
 
-    return this.core.make('osjs/vfs').search({path: root}, pattern);
+    return Promise.all(promises)
+      .then(lists => [].concat(...lists));
   }
 
   createApp() {
@@ -140,6 +151,8 @@ export default class Search {
         this.search(query)
           .then(results => actions.setResults(results))
           .catch(error => actions.setError(error));
+
+        return {status: 'Searching...'};
       },
       open: index => (state, actions) => {
         const iter = state.results[index];
